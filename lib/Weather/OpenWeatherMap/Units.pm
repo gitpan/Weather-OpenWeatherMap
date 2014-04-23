@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Units;
-$Weather::OpenWeatherMap::Units::VERSION = '0.001001';
+$Weather::OpenWeatherMap::Units::VERSION = '0.001002';
 use feature 'state';
 use strictures 1;
 use Carp;

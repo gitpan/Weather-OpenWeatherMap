@@ -32,4 +32,4 @@ requires:
   strictures: 1
 resources:
   repository: git://github.com/avenj/weather-openweathermap.git
-version: 0.001001
+version: 0.001002

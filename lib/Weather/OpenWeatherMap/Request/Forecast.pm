@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Request::Forecast;
-$Weather::OpenWeatherMap::Request::Forecast::VERSION = '0.001001';
+$Weather::OpenWeatherMap::Request::Forecast::VERSION = '0.001002';
 use strictures 1;
 use Carp;
 
@@ -55,14 +55,18 @@ Weather::OpenWeatherMap::Request::Forecast
 
 =head1 SYNOPSIS
 
-  use Weather::OpenWeatherMap::Request;
-  my $current = Weather::OpenWeatherMap::Request->new_for(
-    Forecast =>
-      tag      => 'foo',
-      location => 'Manchester, NH',
-  );
+  # Usually created by Weather::OpenWeatherMap
 
 =head1 DESCRIPTION
+
+A L<Weather::OpenWeatherMap::Request> subclass for building a forecast
+request.
+
+=head2 ATTRIBUTES
+
+=head3 days
+
+The number of days to ask for (up to 14).
 
 =head1 AUTHOR
 

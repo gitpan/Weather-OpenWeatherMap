@@ -8,6 +8,7 @@ Makefile.PL
 README
 README.mkdn
 dist.ini
+examples/simpleweather.pl
 lib/Weather/OpenWeatherMap.pm
 lib/Weather/OpenWeatherMap/Error.pm
 lib/Weather/OpenWeatherMap/Request.pm

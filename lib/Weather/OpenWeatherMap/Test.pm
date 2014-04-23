@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Test;
-$Weather::OpenWeatherMap::Test::VERSION = '0.001001';
+$Weather::OpenWeatherMap::Test::VERSION = '0.001002';
 =pod
 
 =for Pod::Coverage .*
@@ -47,10 +47,14 @@ sub get_test_data {
 { package
     Weather::OpenWeatherMap::Test::MockUA;
   use strict; use warnings FATAL => 'all';
-  our @ISA = 'LWP::UserAgent';
+  require HTTP::Response;
+  use parent 'LWP::UserAgent';
+  sub requested_count { my ($self) = @_; $self->{'__requested'} }
   sub request {
     my ($self, $http_request) = @_;
     my $url = $http_request->uri;
+    $self->{'__requested'} ? 
+      ++$self->{'__requested'} : ($self->{'__requested'} = 1);
     return $url =~ /forecast/ ?
       HTTP::Response->new(
         200 => undef => [] => $self->{forecast_json},
