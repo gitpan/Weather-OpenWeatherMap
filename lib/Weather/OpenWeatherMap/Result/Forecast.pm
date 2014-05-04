@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result::Forecast;
-$Weather::OpenWeatherMap::Result::Forecast::VERSION = '0.001002';
+$Weather::OpenWeatherMap::Result::Forecast::VERSION = '0.001003';
 use v5.10;
 use strictures 1;
 use Carp;
@@ -26,6 +26,7 @@ sub lazy_for {
 
 use Moo; use MooX::late;
 extends 'Weather::OpenWeatherMap::Result';
+
 
 has id => ( lazy_for Int,
   builder => sub { shift->data->{city}->{id} },
@@ -62,6 +63,16 @@ has _forecast_list => ( lazy_for ArrayObj,
   },
 );
 
+sub as_array {
+  my ($self) = @_;
+  $self->_forecast_list->copy
+}
+
+=for Pod::Coverage as_list
+
+=cut
+
+{ no warnings 'once'; *as_list = *list }
 sub list {
   my ($self) = @_;
   $self->_forecast_list->all
@@ -122,6 +133,12 @@ The station's longitude.
 The city name.
 
 =head2 METHODS
+
+=head3 as_array
+
+The full forecast list, as a L<List::Objects::WithUtils::Array>.
+
+See L</list>.
 
 =head3 list
 

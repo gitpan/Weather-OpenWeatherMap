@@ -73,5 +73,17 @@ ok $res->wind_direction eq 'ENE', 'wind_direction ok';
 
 ## FIXME need some failure data to test
 
+use Storable 'thaw';
+my $frozen = $res->freeze;
+my $clone = thaw $frozen;
+isa_ok $clone, 'Weather::OpenWeatherMap::Result::Current';
+isa_ok $clone->request, 'Weather::OpenWeatherMap::Request';
+ok $clone->json eq $res->json, 'clone->json ok';
+ok $clone->name eq 'Manchester', 'clone->name ok';
+ok $clone->temp_f == 41, 'clone->temp_f ok';
+ok $clone->temp_c == 5, 'clone->temp_c ok';
+ok $clone->wind_direction eq 'ENE', 'wind_direction ok';
+
+
 
 done_testing

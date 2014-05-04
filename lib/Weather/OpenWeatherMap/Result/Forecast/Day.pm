@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result::Forecast::Day;
-$Weather::OpenWeatherMap::Result::Forecast::Day::VERSION = '0.001002';
+$Weather::OpenWeatherMap::Result::Forecast::Day::VERSION = '0.001003';
 use strictures 1;
 
 use Types::Standard       -all;
@@ -9,6 +9,8 @@ use List::Objects::Types  -all;
 use Weather::OpenWeatherMap::Units -all;
 
 use Moo; use MooX::late;
+
+use Storable 'freeze';
 
 my $CoercedInt = Int->plus_coercions(StrictNum, sub { int });
 
@@ -54,7 +56,7 @@ has wind_speed_kph => (
   is        => 'ro',
   isa       => $CoercedInt,
   coerce    => 1,
-  builder   => sub { f_to_c shift->wind_speed_mph },
+  builder   => sub { mph_to_kph shift->wind_speed_mph },
 );
 
 has wind_direction => (

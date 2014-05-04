@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result;
-$Weather::OpenWeatherMap::Result::VERSION = '0.001002';
+$Weather::OpenWeatherMap::Result::VERSION = '0.001003';
 use Carp;
 use strictures 1;
 
@@ -11,6 +11,8 @@ use Types::Standard      -all;
 
 
 use Moo; use MooX::late;
+
+use Storable 'freeze';
 
 sub new_for {
   my ($class, $type) = splice @_, 0, 2;
@@ -78,6 +80,7 @@ has error => (
     $msg
   },
 );
+
 
 1;
 
