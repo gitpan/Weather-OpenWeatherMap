@@ -1,5 +1,9 @@
 Revision history for Perl module Weather-OpenWeatherMap
 
+0.001004 2014-05-03
+
+  - Add support for caching results via Weather::OpenWeatherMap::Cache
+
 0.001003 2014-05-03
 
   - Fix Result::Forecast::Day->wind_speed_kph to return a correctly converted

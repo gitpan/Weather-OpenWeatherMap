@@ -4,7 +4,7 @@
       "Jon Portnoy <avenj@cobaltirc.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.015, CPAN::Meta::Converter version 2.140640",
+   "generated_by" : "Dist::Zilla version 5.015, CPAN::Meta::Converter version 2.141170",
    "license" : [
       "perl_5"
    ],
@@ -32,6 +32,7 @@
       "runtime" : {
          "requires" : {
             "Carp" : "0",
+            "Digest::SHA" : "0",
             "Exporter::Tiny" : "0",
             "HTTP::Request" : "0",
             "JSON::Tiny" : "0",
@@ -41,10 +42,14 @@
             "Module::Runtime" : "0",
             "Moo" : "1",
             "MooX::late" : "0.014",
+            "Path::Tiny" : "0.05",
             "Throwable" : "0.2",
+            "Try::Tiny" : "0",
             "Types::DateTime" : "0",
+            "Types::Path::Tiny" : "0.005",
             "Types::Standard" : "0",
             "URI::Escape" : "0",
+            "namespace::clean" : "0",
             "perl" : "v5.10.1",
             "strictures" : "1"
          }
@@ -59,7 +64,7 @@
          }
       }
    },
-   "release_status" : "stable",
+   "release_status" : "testing",
    "resources" : {
       "repository" : {
          "type" : "git",
@@ -67,6 +72,6 @@
          "web" : "http://github.com/avenj/weather-openweathermap"
       }
    },
-   "version" : "0.001003"
+   "version" : "0.001004"
 }
 

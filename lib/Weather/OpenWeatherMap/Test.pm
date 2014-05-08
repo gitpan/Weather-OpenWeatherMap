@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Test;
-$Weather::OpenWeatherMap::Test::VERSION = '0.001003';
+$Weather::OpenWeatherMap::Test::VERSION = '0.001004'; # TRIAL
 =pod
 
 =for Pod::Coverage .*

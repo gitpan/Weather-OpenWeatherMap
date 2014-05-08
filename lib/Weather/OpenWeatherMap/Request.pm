@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Request;
-$Weather::OpenWeatherMap::Request::VERSION = '0.001003';
+$Weather::OpenWeatherMap::Request::VERSION = '0.001004'; # TRIAL
 use v5.10;
 use strictures 1;
 use Carp;
@@ -13,7 +13,7 @@ use URI::Escape 'uri_escape_utf8';
 use Module::Runtime 'use_module';
 
 
-use Moo; use MooX::late;
+use namespace::clean; use Moo; use MooX::late;
 
 use Storable 'freeze';
 

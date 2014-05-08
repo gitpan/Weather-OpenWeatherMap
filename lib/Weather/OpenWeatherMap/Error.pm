@@ -1,11 +1,11 @@
 package Weather::OpenWeatherMap::Error;
-$Weather::OpenWeatherMap::Error::VERSION = '0.001003';
+$Weather::OpenWeatherMap::Error::VERSION = '0.001004'; # TRIAL
 use strictures 1;
 use Carp;
 
 use Types::Standard -all;
 
-use Moo; use MooX::late;
+use namespace::clean; use Moo; use MooX::late;
 
 with 'StackTrace::Auto';
 

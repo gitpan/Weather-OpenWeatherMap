@@ -16,6 +16,7 @@ use Test::NoTabs;
 
 my @files = (
     'lib/Weather/OpenWeatherMap.pm',
+    'lib/Weather/OpenWeatherMap/Cache.pm',
     'lib/Weather/OpenWeatherMap/Error.pm',
     'lib/Weather/OpenWeatherMap/Request.pm',
     'lib/Weather/OpenWeatherMap/Request/Current.pm',
@@ -27,6 +28,7 @@ my @files = (
     'lib/Weather/OpenWeatherMap/Test.pm',
     'lib/Weather/OpenWeatherMap/Units.pm',
     't/00-report-prereqs.t',
+    't/cache.t',
     't/error.t',
     't/openweathermap.t',
     't/release-cpan-changes.t',

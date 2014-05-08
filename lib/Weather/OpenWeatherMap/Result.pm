@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result;
-$Weather::OpenWeatherMap::Result::VERSION = '0.001003';
+$Weather::OpenWeatherMap::Result::VERSION = '0.001004'; # TRIAL
 use Carp;
 use strictures 1;
 
@@ -10,7 +10,7 @@ use List::Objects::Types -all;
 use Types::Standard      -all;
 
 
-use Moo; use MooX::late;
+use namespace::clean; use Moo; use MooX::late;
 
 use Storable 'freeze';
 

@@ -61,6 +61,7 @@ my $static_prereqs = do { my $x = {
        'runtime' => {
                       'requires' => {
                                       'Carp' => '0',
+                                      'Digest::SHA' => '0',
                                       'Exporter::Tiny' => '0',
                                       'HTTP::Request' => '0',
                                       'JSON::Tiny' => '0',
@@ -70,10 +71,14 @@ my $static_prereqs = do { my $x = {
                                       'Module::Runtime' => '0',
                                       'Moo' => '1',
                                       'MooX::late' => '0.014',
+                                      'Path::Tiny' => '0.05',
                                       'Throwable' => '0.2',
+                                      'Try::Tiny' => '0',
                                       'Types::DateTime' => '0',
+                                      'Types::Path::Tiny' => '0.005',
                                       'Types::Standard' => '0',
                                       'URI::Escape' => '0',
+                                      'namespace::clean' => '0',
                                       'perl' => 'v5.10.1',
                                       'strictures' => '1'
                                     }

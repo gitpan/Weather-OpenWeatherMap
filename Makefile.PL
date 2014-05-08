@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Weather::OpenWeatherMap",
   "PREREQ_PM" => {
     "Carp" => 0,
+    "Digest::SHA" => 0,
     "Exporter::Tiny" => 0,
     "HTTP::Request" => 0,
     "JSON::Tiny" => 0,
@@ -31,16 +32,20 @@ my %WriteMakefileArgs = (
     "Module::Runtime" => 0,
     "Moo" => 1,
     "MooX::late" => "0.014",
+    "Path::Tiny" => "0.05",
     "Throwable" => "0.2",
+    "Try::Tiny" => 0,
     "Types::DateTime" => 0,
+    "Types::Path::Tiny" => "0.005",
     "Types::Standard" => 0,
     "URI::Escape" => 0,
+    "namespace::clean" => 0,
     "strictures" => 1
   },
   "TEST_REQUIRES" => {
     "Test::More" => "0.88"
   },
-  "VERSION" => "0.001003",
+  "VERSION" => "0.001004",
   "test" => {
     "TESTS" => "t/*.t t/request/*.t t/result/*.t"
   }
@@ -49,6 +54,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Carp" => 0,
+  "Digest::SHA" => 0,
   "Exporter::Tiny" => 0,
   "HTTP::Request" => 0,
   "JSON::Tiny" => 0,
@@ -58,11 +64,15 @@ my %FallbackPrereqs = (
   "Module::Runtime" => 0,
   "Moo" => 1,
   "MooX::late" => "0.014",
+  "Path::Tiny" => "0.05",
   "Test::More" => "0.88",
   "Throwable" => "0.2",
+  "Try::Tiny" => 0,
   "Types::DateTime" => 0,
+  "Types::Path::Tiny" => "0.005",
   "Types::Standard" => 0,
   "URI::Escape" => 0,
+  "namespace::clean" => 0,
   "strictures" => 1
 );
 

@@ -43,11 +43,28 @@ DESCRIPTION
     classes can be used to create appropriate HTTP::Request instances and
     parse responses from non-blocking HTTP clients.
 
+    See POEx::Weather::OpenWeatherMap for a non-blocking implementation
+    using the POE ecosystem.
+
   ATTRIBUTES
    api_key
     Your OpenWeatherMap <http://www.openweathermap.org/> API key.
 
     (See <http://www.openweathermap.org/api> to register for free.)
+
+   cache
+    A boolean value indicating whether successful results should be cached
+    to disk via Weather::OpenWeatherMap::Cache.
+
+    Defaults to false. This may change in a future release.
+
+   cache_dir
+    The directory in which cache files are saved. The default may be fine;
+    see Weather::OpenWeatherMap::Cache.
+
+   cache_expiry
+    The duration (in seconds) for which cache files are considered valid;
+    see Weather::OpenWeatherMap::Cache.
 
    ua
     The LWP::UserAgent instance used to issue HTTP requests; can be used to
@@ -99,6 +116,9 @@ DESCRIPTION
 
     Any extra arguments are passed to the constructor for the appropriate
     Request subclass; see Weather::OpenWeatherMap::Request.
+
+SEE ALSO
+    POEx::Weather::OpenWeatherMap
 
 AUTHOR
     Jon Portnoy <avenj@cobaltirc.org>

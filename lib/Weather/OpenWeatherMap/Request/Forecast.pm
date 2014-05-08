@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Request::Forecast;
-$Weather::OpenWeatherMap::Request::Forecast::VERSION = '0.001003';
+$Weather::OpenWeatherMap::Request::Forecast::VERSION = '0.001004'; # TRIAL
 use strictures 1;
 use Carp;
 
@@ -8,7 +8,7 @@ use URI::Escape 'uri_escape_utf8';
 use Types::Standard -all;
 
 
-use Moo;
+use namespace::clean; use Moo;
 extends 'Weather::OpenWeatherMap::Request';
 
 

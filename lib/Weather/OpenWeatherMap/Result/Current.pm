@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result::Current;
-$Weather::OpenWeatherMap::Result::Current::VERSION = '0.001003';
+$Weather::OpenWeatherMap::Result::Current::VERSION = '0.001004'; # TRIAL
 use strictures 1;
 use Carp;
 
@@ -30,7 +30,7 @@ sub lazy_for {
 }
 
 
-use Moo; use MooX::late;
+use namespace::clean; use Moo; use MooX::late;
 extends 'Weather::OpenWeatherMap::Result';
 
 

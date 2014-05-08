@@ -37,14 +37,17 @@ Weather::OpenWeatherMap - Interface to the OpenWeatherMap API
 # DESCRIPTION
 
 An object-oriented interface to retrieving weather conditions & forecasts from
-__OpenWeatherMap__ ([http://www.openweathermap.org/](http://www.openweathermap.org/)) for a given city,
+**OpenWeatherMap** ([http://www.openweathermap.org/](http://www.openweathermap.org/)) for a given city,
 latitude/longitude, or OpenWeatherMap city code.
 
-This module provides a simple blocking ([LWP::UserAgent](http://search.cpan.org/perldoc?LWP::UserAgent)) interface to
+This module provides a simple blocking ([LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent)) interface to
 weather retrieval; if you have an event loop handy, the included
-[Weather::OpenWeatherMap::Request](http://search.cpan.org/perldoc?Weather::OpenWeatherMap::Request) & [Weather::OpenWeatherMap::Result](http://search.cpan.org/perldoc?Weather::OpenWeatherMap::Result)
-classes can be used to create appropriate [HTTP::Request](http://search.cpan.org/perldoc?HTTP::Request) instances and parse
+[Weather::OpenWeatherMap::Request](https://metacpan.org/pod/Weather::OpenWeatherMap::Request) & [Weather::OpenWeatherMap::Result](https://metacpan.org/pod/Weather::OpenWeatherMap::Result)
+classes can be used to create appropriate [HTTP::Request](https://metacpan.org/pod/HTTP::Request) instances and parse
 responses from non-blocking HTTP clients.
+
+See [POEx::Weather::OpenWeatherMap](https://metacpan.org/pod/POEx::Weather::OpenWeatherMap) for a non-blocking implementation using
+the [POE](https://metacpan.org/pod/POE) ecosystem.
 
 ## ATTRIBUTES
 
@@ -54,9 +57,26 @@ Your [OpenWeatherMap](http://www.openweathermap.org/) API key.
 
 (See [http://www.openweathermap.org/api](http://www.openweathermap.org/api) to register for free.)
 
+### cache
+
+A boolean value indicating whether successful results should be cached to
+disk via [Weather::OpenWeatherMap::Cache](https://metacpan.org/pod/Weather::OpenWeatherMap::Cache).
+
+Defaults to false. This may change in a future release.
+
+### cache\_dir
+
+The directory in which cache files are saved. The default may be fine; see
+[Weather::OpenWeatherMap::Cache](https://metacpan.org/pod/Weather::OpenWeatherMap::Cache).
+
+### cache\_expiry
+
+The duration (in seconds) for which cache files are considered valid; see
+[Weather::OpenWeatherMap::Cache](https://metacpan.org/pod/Weather::OpenWeatherMap::Cache).
+
 ### ua
 
-The [LWP::UserAgent](http://search.cpan.org/perldoc?LWP::UserAgent) instance used to issue HTTP requests; can be used to
+The [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent) instance used to issue HTTP requests; can be used to
 control LWP options:
 
     my $wx = Weather::OpenWeatherMap->new(
@@ -80,13 +100,13 @@ control LWP options:
       #   'lat 42, long -71'
       location => 'Manchester, NH',
 
-    # Set 'forecast => 1' to get the forecast,
-    # omit or set to false for current weather:
-    forecast => 1,
+      # Set 'forecast => 1' to get the forecast,
+      # omit or set to false for current weather:
+      forecast => 1,
 
-    # If 'forecast' is true, you can specify the number of days to fetch
-    # (up to 14):
-    days => 3,
+      # If 'forecast' is true, you can specify the number of days to fetch
+      # (up to 14):
+      days => 3,
 
       # Optional tag for identifying the response to this request:
       tag  => 'foo',
@@ -99,14 +119,18 @@ The location can be a 'City, State' or 'City, Country' string, an
 Y' string.
 
 Requests the current weather by default (see
-[Weather::OpenWeatherMap::Request::Current](http://search.cpan.org/perldoc?Weather::OpenWeatherMap::Request::Current)).
+[Weather::OpenWeatherMap::Request::Current](https://metacpan.org/pod/Weather::OpenWeatherMap::Request::Current)).
 
 If passed `forecast => 1`, requests a weather forecast (see
-[Weather::OpenWeatherMap::Request::Forecast](http://search.cpan.org/perldoc?Weather::OpenWeatherMap::Request::Forecast)), in which case `days
-=> $count` can be specified (up to 14).
+[Weather::OpenWeatherMap::Request::Forecast](https://metacpan.org/pod/Weather::OpenWeatherMap::Request::Forecast)), in which case `days
+&#x3d;> $count` can be specified (up to 14).
 
 Any extra arguments are passed to the constructor for the appropriate Request
-subclass; see [Weather::OpenWeatherMap::Request](http://search.cpan.org/perldoc?Weather::OpenWeatherMap::Request).
+subclass; see [Weather::OpenWeatherMap::Request](https://metacpan.org/pod/Weather::OpenWeatherMap::Request).
+
+# SEE ALSO
+
+[POEx::Weather::OpenWeatherMap](https://metacpan.org/pod/POEx::Weather::OpenWeatherMap)
 
 # AUTHOR
 
