@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Request;
-$Weather::OpenWeatherMap::Request::VERSION = '0.001004'; # TRIAL
+$Weather::OpenWeatherMap::Request::VERSION = '0.001005';
 use v5.10;
 use strictures 1;
 use Carp;

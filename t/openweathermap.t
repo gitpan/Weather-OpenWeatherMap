@@ -41,6 +41,7 @@ ok $wx->ua->requested_count == 2, 'mocked 2 http requests ok';
 $wx = Weather::OpenWeatherMap->new(
   api_key => 'bar',
   ua      => mock_http_ua(),
+  cache   => 1,
 );
 
 $result = $wx->get_weather(

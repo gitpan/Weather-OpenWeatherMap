@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result::Forecast::Day;
-$Weather::OpenWeatherMap::Result::Forecast::Day::VERSION = '0.001004'; # TRIAL
+$Weather::OpenWeatherMap::Result::Forecast::Day::VERSION = '0.001005';
 use strictures 1;
 
 use Types::Standard       -all;

@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Request::Current;
-$Weather::OpenWeatherMap::Request::Current::VERSION = '0.001004'; # TRIAL
+$Weather::OpenWeatherMap::Request::Current::VERSION = '0.001005';
 use Moo;
 extends 'Weather::OpenWeatherMap::Request';
 

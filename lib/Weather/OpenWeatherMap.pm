@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap;
-$Weather::OpenWeatherMap::VERSION = '0.001004'; # TRIAL
+$Weather::OpenWeatherMap::VERSION = '0.001005';
 use strictures 1;
 use Carp;
 
@@ -126,7 +126,7 @@ sub get_weather {
     )
   }
 
-  $self->_cache->cache($result);
+  $self->_cache->cache($result) if $self->cache;
 
   $result
 }
