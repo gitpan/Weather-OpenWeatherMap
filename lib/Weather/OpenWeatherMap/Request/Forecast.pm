@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Request::Forecast;
-$Weather::OpenWeatherMap::Request::Forecast::VERSION = '0.002001';
+$Weather::OpenWeatherMap::Request::Forecast::VERSION = '0.002002';
 use URI::Escape 'uri_escape_utf8';
 use Types::Standard -all;
 

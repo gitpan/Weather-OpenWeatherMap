@@ -35,6 +35,7 @@
             "Carp" : "0",
             "Digest::SHA" : "0",
             "Exporter::Tiny" : "0",
+            "File::ShareDir" : "0",
             "HTTP::Request" : "0",
             "JSON::MaybeXS" : "0",
             "LWP::UserAgent" : "0",
@@ -73,6 +74,6 @@
          "web" : "http://github.com/avenj/weather-openweathermap"
       }
    },
-   "version" : "0.002001"
+   "version" : "0.002002"
 }
 

@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result::Find;
-$Weather::OpenWeatherMap::Result::Find::VERSION = '0.002001';
+$Weather::OpenWeatherMap::Result::Find::VERSION = '0.002002';
 use v5.10;
 use Carp;
 use strictures 1;

@@ -64,6 +64,7 @@ my $static_prereqs = do { my $x = {
                                       'Carp' => '0',
                                       'Digest::SHA' => '0',
                                       'Exporter::Tiny' => '0',
+                                      'File::ShareDir' => '0',
                                       'HTTP::Request' => '0',
                                       'JSON::MaybeXS' => '0',
                                       'LWP::UserAgent' => '0',

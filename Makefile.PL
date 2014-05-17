@@ -27,6 +27,7 @@ my %WriteMakefileArgs = (
     "Carp" => 0,
     "Digest::SHA" => 0,
     "Exporter::Tiny" => 0,
+    "File::ShareDir" => 0,
     "HTTP::Request" => 0,
     "JSON::MaybeXS" => 0,
     "LWP::UserAgent" => 0,
@@ -48,7 +49,7 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Test::Roo" => 1
   },
-  "VERSION" => "0.002001",
+  "VERSION" => "0.002002",
   "test" => {
     "TESTS" => "t/*.t t/request/*.t t/result/*.t"
   }
@@ -59,6 +60,7 @@ my %FallbackPrereqs = (
   "Carp" => 0,
   "Digest::SHA" => 0,
   "Exporter::Tiny" => 0,
+  "File::ShareDir" => 0,
   "HTTP::Request" => 0,
   "JSON::MaybeXS" => 0,
   "LWP::UserAgent" => 0,
