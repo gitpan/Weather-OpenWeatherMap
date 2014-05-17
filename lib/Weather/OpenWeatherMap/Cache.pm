@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Cache;
-$Weather::OpenWeatherMap::Cache::VERSION = '0.001005';
+$Weather::OpenWeatherMap::Cache::VERSION = '0.002001';
 use Carp;
 use strictures 1;
 
@@ -57,10 +57,17 @@ sub make_path {
       $fname .= 'F';
       last TYPE
     }
+    if ($obj->isa('Weather::OpenWeatherMap::Request::Find')) {
+      $fname .= 'S';
+      last TYPE
+    }
     confess "Fell through; no clue what to do with $obj"
   }
+
+  my $location = lc $obj->location;
   my $digest = $^O eq 'Win32' ? 
-    substr sha1_hex($obj->location), 0, 25 : sha1_hex($obj->location);
+      substr sha1_hex($location), 0, 25 
+    : sha1_hex($location);
   # If you happen to alter the extension, check ->clear() too:
   $fname .= $digest . '.wx';
   path( join '/', $self->dir->absolute, $fname )
@@ -75,15 +82,18 @@ sub serialize {
 }
 
 sub cache {
-  my ($self, $result) = @_;
-  confess "Expected a Weather::OpenWeatherMap::Result but got $result"
-    unless is_Object($result) 
-    and $result->isa('Weather::OpenWeatherMap::Result');
+  my ($self, @results) = @_;
+  for my $result (@results) {
+    confess "Expected a Weather::OpenWeatherMap::Result but got $result"
+      unless is_Object($result) 
+      and $result->isa('Weather::OpenWeatherMap::Result');
 
-  my $request = $result->request;
-  my $path   = $self->make_path($request);
-  my $frozen = $self->serialize($result);
-  $path->spew_raw($frozen)
+    my $request = $result->request;
+    my $path   = $self->make_path($request);
+    my $frozen = $self->serialize($result);
+    $path->spew_raw($frozen);
+  }
+  1
 }
 
 sub is_cached {
@@ -114,7 +124,8 @@ sub retrieve {
 
 sub expire {
   my ($self, $obj) = @_;
-  my $path = $self->make_path($obj);
+  return $self->expire_all unless defined $obj;
+  my $path = is_Path $obj ? $obj : $self->make_path($obj);
   return unless $path->exists;
 
   my $data = $path->slurp_raw;
@@ -130,11 +141,24 @@ sub expire {
   ()
 }
 
+sub cache_paths {
+  my ($self) = @_;
+  $self->dir->children( qr/^W(?:C|F).+\.wx/ )
+}
+
+sub expire_all {
+  my ($self) = @_;
+  my @expired;
+  POSSIBLE: for my $maybe ($self->cache_paths) {
+    push @expired, "$maybe" if $self->expire($maybe)
+  }
+  @expired
+}
+
 sub clear {
   my ($self) = @_;
   my @removed;
-  my @found = $self->dir->children( qr/^W(?:C|F).+\.wx/ );
-  POSSIBLE: for my $maybe (@found) {
+  POSSIBLE: for my $maybe ($self->cache_paths) {
     try {
       my $data = $maybe->slurp_raw;
       my $ref  = $self->deserialize($data);
@@ -191,7 +215,8 @@ C<1200>.
 
 =head4 cache
 
-Takes a L<Weather::OpenWeatherMap::Result> and caches it to L</dir>.
+Takes a list of L<Weather::OpenWeatherMap::Result> objects and caches to
+L</dir>.
 
 =head4 retrieve
 
@@ -213,6 +238,11 @@ B<object> (the relevant L<Weather::OpenWeatherMap::Result> object):
 
 Subclasses can override the following methods to alter cache behavior.
 
+=head4 cache_paths
+
+Returns a list of L<Path::Tiny> objects representing (what appear to be)
+L<Weather::OpenWeatherMap> cache files.
+
 =head4 clear
 
 Walk our L</dir>, removing any items that appear to belong to the cache.
@@ -228,12 +258,18 @@ Uses L<Storable> by default.
 
 =head4 expire
 
-Takes a L<Weather::OpenWeatherMap::Request> or
-L<Weather::OpenWeatherMap::Result> and removes relevant stale cache data.
+Given a L<Weather::OpenWeatherMap::Request> or
+L<Weather::OpenWeatherMap::Result>, removes relevant stale cache data.
+
+If passed no arguments, calls L</expire_all>.
 
 Called by L</retrieve> before object retrieval.
 
 Returns true if a cached object was expired.
+
+=head4 expire_all
+
+Expires any stale cache files found in L</dir>.
 
 =head4 is_cached
 

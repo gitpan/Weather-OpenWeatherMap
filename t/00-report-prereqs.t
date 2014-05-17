@@ -45,7 +45,8 @@ my %exclude = map {; $_ => 1 } qw(
 my $static_prereqs = do { my $x = {
        'configure' => {
                         'requires' => {
-                                        'ExtUtils::MakeMaker' => '6.30'
+                                        'ExtUtils::MakeMaker' => '6.30',
+                                        'File::ShareDir::Install' => '0.03'
                                       }
                       },
        'develop' => {
@@ -64,7 +65,7 @@ my $static_prereqs = do { my $x = {
                                       'Digest::SHA' => '0',
                                       'Exporter::Tiny' => '0',
                                       'HTTP::Request' => '0',
-                                      'JSON::Tiny' => '0',
+                                      'JSON::MaybeXS' => '0',
                                       'LWP::UserAgent' => '0',
                                       'List::Objects::Types' => '1',
                                       'List::Objects::WithUtils' => '2.010002',
@@ -89,7 +90,7 @@ my $static_prereqs = do { my $x = {
                                      'CPAN::Meta::Requirements' => '2.120900'
                                    },
                    'requires' => {
-                                   'Test::More' => '0.88'
+                                   'Test::Roo' => '1'
                                  }
                  }
      };

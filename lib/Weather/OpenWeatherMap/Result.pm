@@ -1,9 +1,9 @@
 package Weather::OpenWeatherMap::Result;
-$Weather::OpenWeatherMap::Result::VERSION = '0.001005';
+$Weather::OpenWeatherMap::Result::VERSION = '0.002001';
 use Carp;
 use strictures 1;
 
-use JSON::Tiny;
+use JSON::MaybeXS ();
 
 use Module::Runtime 'use_module';
 use List::Objects::Types -all;
@@ -19,6 +19,16 @@ sub new_for {
   confess "Expected a subclass type" unless $type;
   my $subclass = $class .'::'. ucfirst($type);
   use_module($subclass)->new(@_)
+}
+
+sub decode_json {
+  my (undef, $js) = @_;
+  JSON::MaybeXS->new(utf8 => 1)->decode( $js )
+}
+
+sub encode_json {
+  my (undef, $data) = @_;
+  JSON::MaybeXS->new(utf8 => 1)->encode( $data )
 }
 
 
@@ -41,7 +51,7 @@ has data => (
   coerce    => 1,
   builder   => sub {
     my ($self) = @_;
-    JSON::Tiny->new->decode( $self->json )
+    $self->decode_json( $self->json )
   },
 );
 
@@ -98,17 +108,14 @@ Weather::OpenWeatherMap::Result - Weather lookup result superclass
 
 This is the parent class for L<Weather::OpenWeatherMap> weather results.
 
-See also:
-
-L<Weather::OpenWeatherMap::Result::Current>
-
-L<Weather::OpenWeatherMap::Result::Forecast>
+The L</"SEE ALSO"> section links known subclasses.
 
 =head2 ATTRIBUTES
 
 =head3 data
 
-This is the decoded hash from the attached L</json>. 
+This is the decoded hash from the attached L</json> (as a
+L<List::Objects::WithUtils::Hash>).
 
 Subclasses provide more convenient accessors for retrieving desired
 information.
@@ -153,15 +160,25 @@ Factory method; returns a new object belonging to the appropriate subclass:
       json    => $raw_json,
   );
 
+=head3 decode_json
+
+Result deserialization wrapper for use by subclasses.
+
+=head3 encode_json
+
+Serialization wrapper for use by subclasses.
+
 =head1 SEE ALSO
 
-L<http://www.openweathermap.org>
+L<http://www.openweathermap.org/api>
 
 L<Weather::OpenWeatherMap>
 
 L<Weather::OpenWeatherMap::Result::Current>
 
 L<Weather::OpenWeatherMap::Result::Forecast>
+
+L<Weather::OpenWeatherMap::Result::Find>
 
 =head1 AUTHOR
 

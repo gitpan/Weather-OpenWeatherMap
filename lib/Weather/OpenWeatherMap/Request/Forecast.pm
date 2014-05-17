@@ -1,12 +1,7 @@
 package Weather::OpenWeatherMap::Request::Forecast;
-$Weather::OpenWeatherMap::Request::Forecast::VERSION = '0.001005';
-use strictures 1;
-use Carp;
-
+$Weather::OpenWeatherMap::Request::Forecast::VERSION = '0.002001';
 use URI::Escape 'uri_escape_utf8';
-
 use Types::Standard -all;
-
 
 use namespace::clean; use Moo;
 extends 'Weather::OpenWeatherMap::Request';
@@ -72,6 +67,6 @@ The number of days to ask for (up to 14).
 
 Jon Portnoy <avenj@cobaltirc.org>
 
-Licensed under the same terms as perl.
+Licensed under the same terms as Perl.
 
 =cut

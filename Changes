@@ -1,5 +1,13 @@
 Revision history for Perl module Weather-OpenWeatherMap
 
+0.002001 2014-05-16
+
+  - Add support for OpenWeatherMap's 'find' interface
+
+  - Caching-related optimizations
+
+  - Use JSON::MaybeXS over JSON::Tiny (for the potential speed boost)
+
 0.001005 2014-05-09
 
   - Cache-related fixes

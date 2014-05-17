@@ -32,6 +32,18 @@ SYNOPSIS
       }
       # (see Weather::OpenWeatherMap::Result::Forecast)
 
+      # Find a city:
+      my $search = $wx->get_weather(
+        location => 'Manchester',
+        find     => 1,
+        max      => 5,
+      );
+      for my $place ($search->list) {
+        my $region = $place->country;
+        # ...
+      }
+      # (see Weather::OpenWeatherMap::Result::Find)
+
 DESCRIPTION
     An object-oriented interface to retrieving weather conditions &
     forecasts from OpenWeatherMap (<http://www.openweathermap.org/>) for a
@@ -113,6 +125,9 @@ DESCRIPTION
     If passed "forecast => 1", requests a weather forecast (see
     Weather::OpenWeatherMap::Request::Forecast), in which case "days =>
     $count" can be specified (up to 14).
+
+    If passed "find => 1", requests search results for a given location name
+    or latitude & longitude; see Weather::OpenWeatherMap::Request::Find.
 
     Any extra arguments are passed to the constructor for the appropriate
     Request subclass; see Weather::OpenWeatherMap::Request.

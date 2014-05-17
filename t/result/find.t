@@ -1,6 +1,6 @@
 use Test::Roo;
 
-sub _build_description { "Testing 3-day forecast result" }
+sub _build_description { "Testing current weather result" }
 
 
 use Weather::OpenWeatherMap::Request;
@@ -12,11 +12,11 @@ has request_obj => (
   is      => 'ro',
   default => sub {
     Weather::OpenWeatherMap::Request->new_for(
-      Forecast =>
+      Find =>
         api_key  => 'abcd',
         tag      => 'foo',
-        location => 'Manchester, NH',
-        days     => 3,
+        location => 'London',
+        max      => 2,
     )
   },
 );
@@ -27,7 +27,7 @@ has result_obj => (
   default => sub {
     my ($self) = @_;
     Weather::OpenWeatherMap::Result->new_for(
-      Forecast =>
+      Find =>
         request => $self->request_obj,
         json    => $self->mock_json,
     )
@@ -37,12 +37,12 @@ has result_obj => (
 has mock_json => (
   lazy    => 1,
   is      => 'ro',
-  default => sub { shift->get_mock_json('3day') },
+  default => sub { shift->get_mock_json('find') },
 );
 
 
 use lib 't/inc';
-with 'Testing::Result::Forecast';
+with 'Testing::Result::Find';
 run_me;
 
 

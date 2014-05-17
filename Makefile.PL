@@ -7,6 +7,8 @@ use 5.010001;
 
 use ExtUtils::MakeMaker 6.30;
 
+use File::ShareDir::Install;
+install_share dist => "share";
 
 
 my %WriteMakefileArgs = (
@@ -14,7 +16,8 @@ my %WriteMakefileArgs = (
   "AUTHOR" => "Jon Portnoy <avenj\@cobaltirc.org>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
-    "ExtUtils::MakeMaker" => "6.30"
+    "ExtUtils::MakeMaker" => "6.30",
+    "File::ShareDir::Install" => "0.03"
   },
   "DISTNAME" => "Weather-OpenWeatherMap",
   "EXE_FILES" => [],
@@ -25,7 +28,7 @@ my %WriteMakefileArgs = (
     "Digest::SHA" => 0,
     "Exporter::Tiny" => 0,
     "HTTP::Request" => 0,
-    "JSON::Tiny" => 0,
+    "JSON::MaybeXS" => 0,
     "LWP::UserAgent" => 0,
     "List::Objects::Types" => 1,
     "List::Objects::WithUtils" => "2.010002",
@@ -43,9 +46,9 @@ my %WriteMakefileArgs = (
     "strictures" => 1
   },
   "TEST_REQUIRES" => {
-    "Test::More" => "0.88"
+    "Test::Roo" => 1
   },
-  "VERSION" => "0.001005",
+  "VERSION" => "0.002001",
   "test" => {
     "TESTS" => "t/*.t t/request/*.t t/result/*.t"
   }
@@ -57,7 +60,7 @@ my %FallbackPrereqs = (
   "Digest::SHA" => 0,
   "Exporter::Tiny" => 0,
   "HTTP::Request" => 0,
-  "JSON::Tiny" => 0,
+  "JSON::MaybeXS" => 0,
   "LWP::UserAgent" => 0,
   "List::Objects::Types" => 1,
   "List::Objects::WithUtils" => "2.010002",
@@ -65,7 +68,7 @@ my %FallbackPrereqs = (
   "Moo" => 1,
   "MooX::late" => "0.014",
   "Path::Tiny" => "0.05",
-  "Test::More" => "0.88",
+  "Test::Roo" => 1,
   "Throwable" => "0.2",
   "Try::Tiny" => 0,
   "Types::DateTime" => 0,
@@ -88,5 +91,10 @@ delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
 
 WriteMakefile(%WriteMakefileArgs);
 
+{
+package
+MY;
+use File::ShareDir::Install qw(postamble);
+}
 
 

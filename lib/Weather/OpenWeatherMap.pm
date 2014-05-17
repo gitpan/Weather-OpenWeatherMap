@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap;
-$Weather::OpenWeatherMap::VERSION = '0.001005';
+$Weather::OpenWeatherMap::VERSION = '0.002001';
 use strictures 1;
 use Carp;
 
@@ -83,10 +83,13 @@ has ua => (
 sub get_weather {
   my ($self, %args) = @_;
 
-  my $location = $args{location};
-  croak "Missing 'location =>' in query" unless $location;
+  croak "Missing 'location =>' in query" unless $args{location};
 
-  my $type = delete $args{forecast} ? 'Forecast' : 'Current';
+  my $type = 
+      delete $args{forecast} ? 'Forecast' 
+    : delete $args{find}     ? 'Find'
+    : 'Current';
+
   my $my_request = Weather::OpenWeatherMap::Request->new_for(
     $type => 
       (
@@ -171,6 +174,18 @@ Weather::OpenWeatherMap - Interface to the OpenWeatherMap API
     # (see Weather::OpenWeatherMap::Result::Forecast::Day)
   }
   # (see Weather::OpenWeatherMap::Result::Forecast)
+
+  # Find a city:
+  my $search = $wx->get_weather(
+    location => 'Manchester',
+    find     => 1,
+    max      => 5,
+  );
+  for my $place ($search->list) {
+    my $region = $place->country;
+    # ...
+  }
+  # (see Weather::OpenWeatherMap::Result::Find)
 
 =head1 DESCRIPTION
 
@@ -262,6 +277,9 @@ L<Weather::OpenWeatherMap::Request::Current>).
 If passed C<< forecast => 1 >>, requests a weather forecast (see
 L<Weather::OpenWeatherMap::Request::Forecast>), in which case C<< days
 => $count >> can be specified (up to 14).
+
+If passed C<< find => 1 >>, requests search results for a given location name
+or latitude & longitude; see L<Weather::OpenWeatherMap::Request::Find>.
 
 Any extra arguments are passed to the constructor for the appropriate Request
 subclass; see L<Weather::OpenWeatherMap::Request>.

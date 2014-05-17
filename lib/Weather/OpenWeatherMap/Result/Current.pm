@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result::Current;
-$Weather::OpenWeatherMap::Result::Current::VERSION = '0.001005';
+$Weather::OpenWeatherMap::Result::Current::VERSION = '0.002001';
 use strictures 1;
 use Carp;
 
@@ -251,9 +251,13 @@ Atmospheric pressure in hPa.
 
 A UTC L<DateTime> object representing sunrise time.
 
+(Not available for L<Weather::OpenWeatherMap::Result::Find> result items.)
+
 =head4 sunset
 
 A UTC L<DateTime> object representing sunset time.
+
+(Not available for L<Weather::OpenWeatherMap::Result::Find> result items.)
 
 =head3 Temperature
 

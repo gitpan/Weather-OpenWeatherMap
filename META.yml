@@ -3,9 +3,10 @@ abstract: 'Interface to the OpenWeatherMap API'
 author:
   - 'Jon Portnoy <avenj@cobaltirc.org>'
 build_requires:
-  Test::More: 0.88
+  Test::Roo: 1
 configure_requires:
   ExtUtils::MakeMaker: 6.30
+  File::ShareDir::Install: 0.03
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 5.016, CPAN::Meta::Converter version 2.141170'
 license: perl
@@ -18,7 +19,7 @@ requires:
   Digest::SHA: 0
   Exporter::Tiny: 0
   HTTP::Request: 0
-  JSON::Tiny: 0
+  JSON::MaybeXS: 0
   LWP::UserAgent: 0
   List::Objects::Types: 1
   List::Objects::WithUtils: 2.010002
@@ -37,4 +38,4 @@ requires:
   strictures: 1
 resources:
   repository: git://github.com/avenj/weather-openweathermap.git
-version: 0.001005
+version: 0.002001

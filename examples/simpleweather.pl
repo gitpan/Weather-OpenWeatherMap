@@ -4,7 +4,7 @@ use Weather::OpenWeatherMap;
 
 my $location = shift @ARGV || die "No location specified\n";
 my $api_key  = shift @ARGV;
-warn "Attempting to continue without API key" unless $api_key;
+warn "Attempting to continue without API key\n" unless $api_key;
 
 my $result = 
   Weather::OpenWeatherMap->new( ( $api_key ? (api_key => $api_key) : () ) )
