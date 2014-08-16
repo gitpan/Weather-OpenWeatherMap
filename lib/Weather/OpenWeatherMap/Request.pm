@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Request;
-$Weather::OpenWeatherMap::Request::VERSION = '0.002002';
+$Weather::OpenWeatherMap::Request::VERSION = '0.002003';
 use v5.10;
 use strictures 1;
 use Carp;
@@ -121,7 +121,7 @@ sub _parse_location_str {
   my $str = $self->location;
   my $url;
   URL: {
-    if (is_StrictNum $str) {
+    if (is_StrictNum($str)) {
       $url = $self->_url_bycode($str);
       last URL
     }

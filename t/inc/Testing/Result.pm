@@ -1,8 +1,10 @@
 package Testing::Result;
 
 use Test::Roo::Role;
+
 use Scalar::Util 'blessed';
 
+use Test::Memory::Cycle;
 use Weather::OpenWeatherMap::Test;
 
 
@@ -89,5 +91,9 @@ test 'request objects match' => sub {
   ok $self->result_obj->request == $self->request_obj
 };
 
+test 'no memory cycles' => sub {
+  my ($self) = @_;
+  memory_cycle_ok $self->result_obj
+};
 
 1;

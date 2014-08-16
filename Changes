@@ -1,5 +1,9 @@
 Revision history for Perl module Weather-OpenWeatherMap
 
+0.002003 2014-08-16
+
+  - Fix Path object coercion in cache handler
+
 0.002002 2014-05-17
 
   - Fix missing File::ShareDir dependency

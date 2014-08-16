@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Request::Find;
-$Weather::OpenWeatherMap::Request::Find::VERSION = '0.002002';
+$Weather::OpenWeatherMap::Request::Find::VERSION = '0.002003';
 use Carp;
 use URI::Escape 'uri_escape_utf8';
 use Types::Standard -all;

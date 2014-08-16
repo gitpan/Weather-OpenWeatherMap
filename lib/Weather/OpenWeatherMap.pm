@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap;
-$Weather::OpenWeatherMap::VERSION = '0.002002';
+$Weather::OpenWeatherMap::VERSION = '0.002003';
 use strictures 1;
 use Carp;
 

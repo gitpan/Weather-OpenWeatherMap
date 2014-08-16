@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Result::Find;
-$Weather::OpenWeatherMap::Result::Find::VERSION = '0.002002';
+$Weather::OpenWeatherMap::Result::Find::VERSION = '0.002003';
 use v5.10;
 use Carp;
 use strictures 1;
@@ -104,8 +104,9 @@ L<Weather::OpenWeatherMap::Result::Current> instance:
 
 See L<Weather::OpenWeatherMap::Result::Current>.
 
-The current weather returned by a Find is not quite as complete as a full
-L<Weather::OpenWeatherMap::Request::Current> might return. In particular:
+The current weather returned by a Find is not quite as complete as that
+returned by an actual L<Weather::OpenWeatherMap::Request::Current>. In
+particular:
 
 =over
 

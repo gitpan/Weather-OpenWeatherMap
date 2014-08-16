@@ -1,5 +1,5 @@
 package Weather::OpenWeatherMap::Cache;
-$Weather::OpenWeatherMap::Cache::VERSION = '0.002002';
+$Weather::OpenWeatherMap::Cache::VERSION = '0.002003';
 use Carp;
 use strictures 1;
 
@@ -125,7 +125,7 @@ sub retrieve {
 sub expire {
   my ($self, $obj) = @_;
   return $self->expire_all unless defined $obj;
-  my $path = is_Path $obj ? $obj : $self->make_path($obj);
+  my $path = is_Path($obj) ? $obj : $self->make_path($obj);
   return unless $path->exists;
 
   my $data = $path->slurp_raw;
@@ -164,7 +164,7 @@ sub clear {
       my $ref  = $self->deserialize($data);
       my ($ts, $result) = @$ref;
       die 
-        unless is_StrictNum $ts 
+        unless is_StrictNum($ts)
         and $result->isa('Weather::OpenWeatherMap::Result')
     } or next POSSIBLE;
     push @removed, "$maybe";

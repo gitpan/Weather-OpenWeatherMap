@@ -29,6 +29,7 @@ my @files = (
     'lib/Weather/OpenWeatherMap/Result/Forecast/Day.pm',
     'lib/Weather/OpenWeatherMap/Test.pm',
     'lib/Weather/OpenWeatherMap/Units.pm',
+    't/00-report-prereqs.dd',
     't/00-report-prereqs.t',
     't/cache.t',
     't/error.t',
